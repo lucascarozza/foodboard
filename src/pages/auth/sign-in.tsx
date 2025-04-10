@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
+import { Link } from "react-router-dom";
 
 const signInFormSchema = z.object({
   email: z.string().email("Email inválido"),
@@ -35,6 +36,14 @@ export function SignIn() {
 
   return (
     <div className="p-8">
+      <Button
+        asChild
+        variant="link"
+        className="cursor-pointer absolute top-8 right-8"
+      >
+        <Link to="/sign-up">Novo restaurante</Link>
+      </Button>
+
       <div className="flex flex-col justify-center gap-6 w-80">
         <header className="flex flex-col gap-2 text-center">
           <h1 className="text-2xl font-semibold tracking-tight">
@@ -48,7 +57,12 @@ export function SignIn() {
         <form onSubmit={handleSubmit(handleSignIn)} className="space-y-4">
           <div className="space-y-2">
             <Label htmlFor="email">Seu e-mail</Label>
-            <Input id="email" type="email" {...register("email")} />
+            <Input
+              id="email"
+              type="email"
+              {...register("email")}
+              className="cursor-text"
+            />
           </div>
           <Button disabled={isSubmitting} type="submit" className="w-full">
             Acessar painel
