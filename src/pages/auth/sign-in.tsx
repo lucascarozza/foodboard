@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 const signInFormSchema = z.object({
   email: z.string().email("Email inválido"),
@@ -22,8 +23,14 @@ export function SignIn() {
   });
 
   async function handleSignIn(data: SignInForm) {
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    console.log(data);
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log(data);
+      toast.success("Enviamos um link de login para o seu e-mail.");
+    } catch (error) {
+      console.error(error);
+      toast.error("Erro ao enviar o link de login.");
+    }
   }
 
   return (
