@@ -1,16 +1,24 @@
 import { ArrowRight, Eye, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TableCell, TableRow } from "@/components/ui/Table";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { OrderDetails } from "./OrdersDetails";
 
 
 export function OrderTableRow() {
   return (
     <TableRow>
       <TableCell>
-        <Button variant="outline" size="icon" className="cursor-pointer">
-          <Eye size={32} />
-          <span className="sr-only">Detalhes do pedido</span>
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button variant="outline" size="icon" className="cursor-pointer">
+              <Eye size={32} />
+              <span className="sr-only">Detalhes do pedido</span>
+            </Button>
+          </DialogTrigger>
+
+          <OrderDetails />
+        </Dialog>
       </TableCell>
       <TableCell className="font-mono text-xm font-medium">
         m7q9xk2l5d8y3w4n
