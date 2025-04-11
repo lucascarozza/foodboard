@@ -1,9 +1,8 @@
 import { ArrowRight, Eye, X } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { TableCell, TableRow } from "@/components/ui/Table";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogTrigger } from "@/components/ui/Dialog";
 import { OrderDetails } from "./OrdersDetails";
-
 
 export function OrderTableRow() {
   return (

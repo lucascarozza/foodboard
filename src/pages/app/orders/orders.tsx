@@ -5,18 +5,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { OrderTableRow } from "./OrdersTableRow";
-import { OrdersTableFilter } from "./OrdersTableFilter";
+import { OrdersTableFilter } from "./Table/OrdersTableFilter";
 import { Pagination } from "@/components/Pagination";
+import { OrderTableRow } from "./Table/OrdersTableRow";
 
 export function Orders() {
   return (
     <div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col mb-4">
         <h1 className="text-3xl font-bold tracking-tight">Seus Pedidos</h1>
       </div>
 
-      <div className="space-y-4 my-4">
+      <div className="space-y-4">
         <OrdersTableFilter />
 
         <div className="border rounded-md">
