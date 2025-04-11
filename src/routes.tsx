@@ -6,12 +6,14 @@ import { Dashboard } from "./pages/app/Dashboard/Dashboard";
 import { SignIn } from "./pages/auth/sign-in";
 import { SignUp } from "./pages/auth/sign-up";
 import { Orders } from "./pages/app/Orders/Orders";
+import { NotFound } from "./pages/404";
 
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         path: "/",
