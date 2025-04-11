@@ -4,9 +4,10 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/components/ui/Table";
 import { OrderTableRow } from "./orders-table-row";
 import { OrdersTableFilter } from "./orders-table-filter";
+import { Pagination } from "@/components/Pagination";
 
 export function Orders() {
   return (
@@ -41,6 +42,7 @@ export function Orders() {
             </TableBody>
           </Table>
         </div>
+        <Pagination pageIndex={0} totalCount={50  } perPage={10}/>
       </div>
     </div>
   );
