@@ -24,7 +24,9 @@ const signUpFormSchema = z.object({
       3,
       "O nome do responsável é obrigatório e deve ter no mínimo 3 caracteres."
     )
-    .max(30, { message: "O nome do responsável deve ter no máximo 30 caracteres." }),
+    .max(30, {
+      message: "O nome do responsável deve ter no máximo 30 caracteres.",
+    }),
   phone: z
     .string()
     .min(10, "Telefone é obrigatório e deve ter no mínimo 8 dígitos"),
@@ -40,6 +42,7 @@ export function SignUp() {
     register,
     handleSubmit,
     formState: { isSubmitting },
+    reset,
   } = useForm<SignUpForm>({
     resolver: zodResolver(signUpFormSchema),
   });
@@ -61,6 +64,12 @@ export function SignUp() {
           label: "Acessar painel",
           onClick: () => navigate(`/sign-in?email=${data.email}`),
         },
+      });
+      reset({
+        restaurantName: "",
+        managerName: "",
+        email: "",
+        phone: "",
       });
     } catch (error) {
       console.error(error);
