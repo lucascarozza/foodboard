@@ -125,7 +125,7 @@ export function RestaurantProfileDialog() {
             <Label htmlFor="restaurantName">Nome do Restaurante</Label>
             <Input
               id="restaurantName"
-              className="w-full"
+              className="w-full cursor-text"
               {...register("name")}
             />
           </div>
@@ -133,7 +133,7 @@ export function RestaurantProfileDialog() {
             <Label htmlFor="description">Descrição</Label>
             <Textarea
               id="description"
-              className="w-full h-32"
+              className="w-full h-32 cursor-text"
               {...register("description")}
             />
           </div>

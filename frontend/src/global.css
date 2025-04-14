@@ -112,7 +112,7 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50 antialiased;
+    @apply border-border outline-ring/50 antialiased cursor-default;
   }
   body {
     @apply bg-background text-foreground;

@@ -13,10 +13,10 @@ export function OrdersTableFilter() {
   return (
     <form className="flex items-center gap-2">
       <span className="text-sm font-semibold">Filtros:</span>
-      <Input placeholder="ID do Pedido" className="cursor-text- h-8 w-auto" />
+      <Input placeholder="ID do Pedido" className="cursor-text h-8 w-auto" />
       <Input placeholder="Nome do cliente" className="cursor-text h-8 w-80" />
       <Select defaultValue="all">
-        <SelectTrigger className="h8 w-44">
+        <SelectTrigger className="h8 w-44 cursor-pointer">
           <SelectValue />
         </SelectTrigger>
         <SelectContent>

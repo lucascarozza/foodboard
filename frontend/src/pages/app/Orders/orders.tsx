@@ -1,3 +1,12 @@
+// External libraries
+import { useQuery } from "@tanstack/react-query";
+import { useSearchParams } from "react-router-dom";
+import { z } from "zod";
+
+// Internal utilities
+import { getOrders } from "@/api/get-orders";
+
+// UI components
 import {
   Table,
   TableBody,
@@ -10,16 +19,35 @@ import { Pagination } from "@/components/Pagination";
 import { OrderTableRow } from "./Table/OrdersTableRow";
 
 export function Orders() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const pageIndex = z.coerce
+    .number()
+    .transform((page) => page - 1)
+    .parse(searchParams.get("page") ?? "1");
+
+  const { data: orderResults } = useQuery({
+    queryKey: ["orders", pageIndex],
+    queryFn: () => getOrders({ pageIndex }),
+  });
+
+  function handlePageChange(pageIndex: number) {
+    setSearchParams((prev) => {
+      prev.set("page", (pageIndex + 1).toString());
+      return prev;
+    });
+  }
+
   return (
     <div>
-      <div className="flex flex-col mb-4">
+      <div className="mb-4 flex flex-col">
         <h1 className="text-3xl font-bold tracking-tight">Seus Pedidos</h1>
       </div>
 
       <div className="space-y-4">
         <OrdersTableFilter />
 
-        <div className="border rounded-md">
+        <div className="rounded-md border">
           <Table>
             <TableHeader>
               <TableRow>
@@ -30,19 +58,25 @@ export function Orders() {
                 <TableHead>Cliente</TableHead>
                 <TableHead className="w-36">Total</TableHead>
                 <TableHead className="w-32"></TableHead>
-                <TableHead className="w-32"></TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-
-              {Array.from({ length: 10 }, (_, index) => {
-                return <OrderTableRow key={index} />;
-              })}
-
+              {orderResults &&
+                orderResults.orders.map((order) => {
+                  return <OrderTableRow key={order.orderId} order={order} />;
+                })}
             </TableBody>
           </Table>
         </div>
-        <Pagination pageIndex={0} totalCount={50  } perPage={10}/>
+
+        {orderResults && (
+          <Pagination
+            onPageChange={handlePageChange}
+            pageIndex={orderResults.meta.pageIndex}
+            totalCount={orderResults.meta.totalCount}
+            perPage={orderResults.meta.perPage}
+          />
+        )}
       </div>
     </div>
   );
