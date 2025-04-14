@@ -1,4 +1,5 @@
 // External libraries
+import { useState } from "react";
 import { ArrowRight, Eye, X } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -21,19 +22,23 @@ export interface OrderTableRowProps {
 }
 
 export function OrderTableRow({ order }: OrderTableRowProps) {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
   return (
     <TableRow>
       <TableCell>
-        <Dialog>
+        <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
           <DialogTrigger asChild>
             <Button variant="outline" size="icon" className="cursor-pointer">
               <Eye size={32} />
               <span className="sr-only">Detalhes do pedido</span>
             </Button>
           </DialogTrigger>
-          <OrderDetails />
+
+          <OrderDetails isOpen={isDetailsOpen} orderId={order.orderId} />
         </Dialog>
       </TableCell>
+
       <TableCell className="font-mono text-xm font-medium">
         {order.orderId}
       </TableCell>
@@ -43,22 +48,25 @@ export function OrderTableRow({ order }: OrderTableRowProps) {
           addSuffix: true,
         })}
       </TableCell>
+
       <TableCell>
         <OrderStatus status={order.status} />
       </TableCell>
       <TableCell className="font-medium">{order.customerName}</TableCell>
       <TableCell className="font-medium">
-        {order.total.toLocaleString("pt-BR", {
+        {(order.total / 100).toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         })}
       </TableCell>
+
       <TableCell>
         <Button variant="outline" size="sm" className="cursor-pointer">
           <ArrowRight />
           <span className="cursor-pointer">Aprovar</span>
         </Button>
       </TableCell>
+
       <TableCell>
         <Button variant="ghost" size="sm" className="cursor-pointer">
           <X />

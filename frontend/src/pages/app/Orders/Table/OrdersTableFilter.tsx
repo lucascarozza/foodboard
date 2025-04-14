@@ -88,13 +88,13 @@ export function OrdersTableFilter() {
       <span className="text-sm font-semibold">Filtros:</span>
       <Input
         placeholder="ID do Pedido"
-        className="h-8 w-auto cursor-text"
+        className="h-9 w-auto cursor-text"
         {...register("orderId")}
       />
 
       <Input
         placeholder="Nome do cliente"
-        className="h-8 w-80 cursor-text"
+        className="h-9 w-80 cursor-text"
         {...register("customerName")}
       />
 
