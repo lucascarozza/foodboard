@@ -15,14 +15,16 @@ const signUpFormSchema = z.object({
     .string()
     .min(
       3,
-      "Nome do restaurante é obrigatório e deve ter no mínimo 3 caracteres"
-    ),
+      "O nome do restaurante é obrigatório e deve ter no mínimo 3 caracteres"
+    )
+    .max(30, { message: "O nome deve ter no máximo 30 caracteres." }),
   managerName: z
     .string()
     .min(
       3,
-      "Nome do responsável é obrigatório e deve ter no mínimo 3 caracteres"
-    ),
+      "O nome do responsável é obrigatório e deve ter no mínimo 3 caracteres."
+    )
+    .max(30, { message: "O nome do responsável deve ter no máximo 30 caracteres." }),
   phone: z
     .string()
     .min(10, "Telefone é obrigatório e deve ter no mínimo 8 dígitos"),
