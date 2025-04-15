@@ -1,10 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/Card";
+// External libraries
+import { useQuery } from "@tanstack/react-query";
+import { useMemo, useState } from "react";
+import { DateRange } from "react-day-picker";
+import { subDays } from "date-fns";
 import {
   ResponsiveContainer,
   LineChart,
@@ -14,61 +12,99 @@ import {
   Line,
 } from "recharts";
 
-const data = [
-  { date: "2025-04-05", revenue: 1338 },
-  { date: "2025-04-06", revenue: 1729 },
-  { date: "2025-04-07", revenue: 1409 },
-  { date: "2025-04-08", revenue: 1680 },
-  { date: "2025-04-09", revenue: 1215 },
-  { date: "2025-04-10", revenue: 1125 },
-  { date: "2025-04-11", revenue: 1534 },
-];
+// Internal utilities
+import { getDailyRevenuePeriod } from "@/api/get-daily-revenue-period";
+
+// Internal components
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+import { Label } from "@/components/ui/Label";
+import { DateRangePicker } from "@/components/ui/DateRangePicker";
 
 export function RevenueChart() {
+  const [dateRange, setDateRange] = useState<DateRange | undefined>({
+    from: subDays(new Date(), 7),
+    to: new Date(),
+  });
+
+  const { data: dailyRevenuePeriod } = useQuery({
+    queryKey: ["metrics", "daily-revenue-in-period", dateRange],
+    queryFn: () => getDailyRevenuePeriod({
+      from: dateRange?.from,
+      to: dateRange?.to,
+    }),
+  });
+
+  const chartData = useMemo(() => {
+    return dailyRevenuePeriod?.map((item) => {
+      return {
+        date: item.date,
+        receipt: item.receipt / 100,
+      }
+    })
+  }, [dailyRevenuePeriod]);
+
   return (
     <Card className="col-span-6">
       <CardHeader className="flex items-center justify-between pb-8">
         <div className="space-y-1">
           <CardTitle className="text-base font-medium">
-            Receita Semanal
+            Receita no período
           </CardTitle>
-          <CardDescription>Receita Diária no Período de 7 dias</CardDescription>
+          <CardDescription>
+            Acompanhe sua receita diária dentro do intervalo escolhido.
+          </CardDescription>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <Label>Período:</Label>
+          <DateRangePicker date={dateRange} onDateChange={setDateRange} />
         </div>
       </CardHeader>
 
       <CardContent>
-        <ResponsiveContainer width="100%" height={240}>
-          <LineChart
-            data={data}
-            style={{ fontSize: 12 }}
-            aria-label="Gráfico de linha mostrando a receita diária no período"
-          >
-            <CartesianGrid vertical={false} className="stroke-muted" />
-            <XAxis
-              dataKey="date"
-              stroke="#888"
-              tickLine={false}
-              tickFormatter={(value: string) =>
-                new Date(value).toLocaleDateString("pt-BR", {
-                  day: "2-digit",
-                  month: "2-digit",
-                })
-              }
-            />
-            <YAxis
-              stroke="#888"
-              tickLine={false}
-              width={80}
-              tickFormatter={(value: number) =>
-                value.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })
-              }
-            />
-            <Line type="linear" stroke="red" dataKey="revenue" />
-          </LineChart>
-        </ResponsiveContainer>
+        {chartData && (
+          <ResponsiveContainer width="100%" height={240}>
+            <LineChart
+              data={chartData}
+              style={{ fontSize: 12 }}
+              aria-label="Gráfico de linha mostrando a receita diária no período selecionado"
+            >
+              <CartesianGrid vertical={false} className="stroke-muted" />
+
+              <XAxis
+                dataKey="date"
+                stroke="#888"
+                tickLine={false}
+                tickFormatter={(value: string) =>
+                  new Date(value).toLocaleDateString("pt-BR", {
+                    day: "2-digit",
+                    month: "2-digit",
+                  })
+                }
+              />
+
+              <YAxis
+                stroke="#888"
+                tickLine={false}
+                width={80}
+                tickFormatter={(value: number) =>
+                  value.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })
+                }
+              />
+
+              <Line type="linear" stroke="red" dataKey="receipt" />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </CardContent>
     </Card>
   );
