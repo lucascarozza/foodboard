@@ -7,6 +7,7 @@ import { getMonthlyRevenue } from "@/api/get-monthly-revenue";
 
 // Internal components
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { MetricCardSkeleton } from "./MetricCardSkeleton";
 
 export function EarningsCard() {
   const { data: monthlyRevenue } = useQuery({
@@ -22,7 +23,7 @@ export function EarningsCard() {
       </CardHeader>
 
       <CardContent className="flex flex-col gap-1">
-        {monthlyRevenue && (
+        {monthlyRevenue ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {(monthlyRevenue.receipt / 100).toLocaleString("pt-BR", {
@@ -48,6 +49,8 @@ export function EarningsCard() {
               )}
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

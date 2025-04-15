@@ -6,6 +6,8 @@ import { PopularChart } from "./Charts/PopularChart";
 import { RevenueChart } from "./Charts/RevenueChart";
 
 export function Dashboard() {
+  // throw new Error("Erro teste");
+    
   return (
     <div>
       <div className="flex flex-col mb-4">

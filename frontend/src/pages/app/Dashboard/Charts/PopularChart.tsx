@@ -1,6 +1,6 @@
 // External libraries
 import { useQuery } from "@tanstack/react-query";
-import { PieChartIcon } from "lucide-react";
+import { Loader2, PieChartIcon } from "lucide-react";
 import { ResponsiveContainer, PieChart, Pie, Cell } from "recharts";
 import colors from "tailwindcss/colors";
 
@@ -32,7 +32,7 @@ export function PopularChart() {
       </CardHeader>
       
       <CardContent>
-        {popularProducts && (
+        {popularProducts ? (
           <ResponsiveContainer width="100%" height={240}>
             <PieChart
               style={{ fontSize: 12 }}
@@ -90,6 +90,10 @@ export function PopularChart() {
               </Pie>
             </PieChart>
           </ResponsiveContainer>
+        ) : (
+          <div className="flex h-60 w-full items-center justify-center">
+            <Loader2 className="h-10 w-10 text-muted-foreground animate-spin"/>
+          </div>
         )}
       </CardContent>
     </Card>

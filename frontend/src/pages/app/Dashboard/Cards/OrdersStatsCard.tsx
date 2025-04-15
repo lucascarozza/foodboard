@@ -7,6 +7,7 @@ import { getMonthlyOrdersAmount } from "@/api/get-monthly-orders-amount";
 
 // Internal components
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { MetricCardSkeleton } from "./MetricCardSkeleton";
 
 export function OrdersStatsCard() {
   const { data: monthlyOrdersAmount } = useQuery({
@@ -20,9 +21,9 @@ export function OrdersStatsCard() {
         <CardTitle>Total de Pedidos no mês</CardTitle>
         <Utensils size={20} className="text-muted-foreground" />
       </CardHeader>
-      
+
       <CardContent className="flex flex-col gap-1">
-        {monthlyOrdersAmount && (
+        {monthlyOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {monthlyOrdersAmount.amount.toLocaleString("pt-BR")}
@@ -45,6 +46,8 @@ export function OrdersStatsCard() {
               )}
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

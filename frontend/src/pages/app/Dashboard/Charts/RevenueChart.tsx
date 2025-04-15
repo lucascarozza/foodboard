@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
 import { DateRangePicker } from "@/components/ui/DateRangePicker";
+import { Loader2 } from "lucide-react";
 
 export function RevenueChart() {
   const [dateRange, setDateRange] = useState<DateRange | undefined>({
@@ -34,10 +35,11 @@ export function RevenueChart() {
 
   const { data: dailyRevenuePeriod } = useQuery({
     queryKey: ["metrics", "daily-revenue-in-period", dateRange],
-    queryFn: () => getDailyRevenuePeriod({
-      from: dateRange?.from,
-      to: dateRange?.to,
-    }),
+    queryFn: () =>
+      getDailyRevenuePeriod({
+        from: dateRange?.from,
+        to: dateRange?.to,
+      }),
   });
 
   const chartData = useMemo(() => {
@@ -45,8 +47,8 @@ export function RevenueChart() {
       return {
         date: item.date,
         receipt: item.receipt / 100,
-      }
-    })
+      };
+    });
   }, [dailyRevenuePeriod]);
 
   return (
@@ -68,7 +70,7 @@ export function RevenueChart() {
       </CardHeader>
 
       <CardContent>
-        {chartData && (
+        {chartData ? (
           <ResponsiveContainer width="100%" height={240}>
             <LineChart
               data={chartData}
@@ -104,6 +106,10 @@ export function RevenueChart() {
               <Line type="linear" stroke="red" dataKey="receipt" />
             </LineChart>
           </ResponsiveContainer>
+        ) : (
+          <div className="flex h-60 w-full items-center justify-center">
+            <Loader2 className="h-10 w-10 text-muted-foreground animate-spin" />
+          </div>
         )}
       </CardContent>
     </Card>

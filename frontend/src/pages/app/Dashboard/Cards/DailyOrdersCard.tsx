@@ -7,6 +7,7 @@ import { getDailyOrdersAmount } from "@/api/get-daily-orders-amount";
 
 // Internal components
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
+import { MetricCardSkeleton } from "./MetricCardSkeleton";
 
 export function DailyOrdersCard() {
   const { data: dailyOrdersAmount } = useQuery({
@@ -20,9 +21,9 @@ export function DailyOrdersCard() {
         <CardTitle>Pedidos de hoje</CardTitle>
         <Utensils size={20} className="text-muted-foreground" />
       </CardHeader>
-      
+
       <CardContent className="flex flex-col gap-1">
-        {dailyOrdersAmount && (
+        {dailyOrdersAmount ? (
           <>
             <span className="text-2xl font-bold tracking-tight">
               {dailyOrdersAmount.amount.toLocaleString("pt-BR")}
@@ -45,6 +46,8 @@ export function DailyOrdersCard() {
               )}
             </p>
           </>
+        ) : (
+          <MetricCardSkeleton />
         )}
       </CardContent>
     </Card>

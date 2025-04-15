@@ -17,6 +17,7 @@ import {
 import { OrdersTableFilter } from "./Table/OrdersTableFilter";
 import { Pagination } from "@/components/Pagination";
 import { OrderTableRow } from "./Table/OrdersTableRow";
+import { OrdersTableSkeleton } from "./Table/OrdersTableSkeleton";
 
 export function Orders() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,7 +64,7 @@ export function Orders() {
               <TableRow>
                 <TableHead className="w-16"></TableHead>
                 <TableHead className="w-36">ID</TableHead>
-                <TableHead className="w-44">Data</TableHead>
+                <TableHead className="w-44">Realizado</TableHead>
                 <TableHead className="w-36">Status</TableHead>
                 <TableHead>Cliente</TableHead>
                 <TableHead className="w-36">Total</TableHead>
@@ -72,10 +73,10 @@ export function Orders() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {orderResults &&
+              {orderResults ?
                 orderResults.orders.map((order) => {
                   return <OrderTableRow key={order.orderId} order={order} />;
-                })}
+                }) : <OrdersTableSkeleton />}
             </TableBody>
           </Table>
         </div>
