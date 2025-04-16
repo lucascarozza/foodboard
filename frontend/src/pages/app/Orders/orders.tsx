@@ -14,10 +14,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/Table";
-import { OrdersTableFilter } from "./Table/OrdersTableFilter";
-import { Pagination } from "@/components/Pagination";
-import { OrderTableRow } from "./Table/OrdersTableRow";
-import { OrdersTableSkeleton } from "./Table/OrdersTableSkeleton";
+import { Pagination } from "@/pages/app/Orders/components/Pagination";
+import { OrdersTableFilter } from "./components/OrdersFilter";
+import { OrderTableRow } from "./components/Table/OrdersTableRow";
+import { OrdersTableSkeleton } from "./components/Table/OrdersTableSkeleton";
 
 export function Orders() {
   const [searchParams, setSearchParams] = useSearchParams();

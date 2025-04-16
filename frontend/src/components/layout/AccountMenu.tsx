@@ -8,7 +8,7 @@ import { getProfile } from "@/api/get-profile";
 import { getManagedRestaurant } from "@/api/get-managed-restaurant";
 
 // UI components
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,9 +16,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./ui/DropdownMenu";
-import { Skeleton } from "./ui/Skeleton";
-import { Dialog, DialogTrigger } from "./ui/Dialog";
+} from "../ui/DropdownMenu";
+import { Skeleton } from "../ui/Skeleton";
+import { Dialog, DialogTrigger } from "../ui/Dialog";
 import { RestaurantProfileDialog } from "./RestaurantProfileDialog";
 import { signOut } from "@/api/sign-out";
 

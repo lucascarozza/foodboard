@@ -8,7 +8,7 @@ import { cancelOrder } from "@/api/cancel-order";
 
 // Internal utilities
 import { GetOrdersResponse } from "@/api/get-orders";
-import { OrderStatus } from "@/components/OrderStatus";
+import { OrderStatus } from "@/pages/app/Orders/components/Table/OrderStatus";
 
 // Internal components
 import { Button } from "@/components/ui/Button";

@@ -4,7 +4,7 @@ import { isAxiosError } from "axios";
 
 import { api } from "@/lib/axios";
 
-import { Header } from "@/components/Header";
+import { Header } from "@/components/layout/Header";
 
 export function AppLayout() {
   const navigate = useNavigate();

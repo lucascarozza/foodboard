@@ -11,7 +11,7 @@ import {
 } from "@/api/get-managed-restaurant";
 
 // UI components
-import { Button } from "./ui/Button";
+import { Button } from "../ui/Button";
 import {
   DialogClose,
   DialogContent,
@@ -19,10 +19,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "./ui/Dialog";
-import { Input } from "./ui/Input";
-import { Label } from "./ui/Label";
-import { Textarea } from "./ui/TextArea";
+} from "../ui/Dialog";
+import { Input } from "../ui/Input";
+import { Label } from "../ui/Label";
+import { Textarea } from "../ui/TextArea";
 import { updateProfile } from "@/api/update-profile";
 import { toast } from "sonner";
 

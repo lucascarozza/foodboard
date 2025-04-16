@@ -1,8 +1,8 @@
 import { ChefHat, Home, UtensilsCrossed } from "lucide-react";
 
 import { NavLink } from "./NavLink";
-import { Separator } from "./ui/Separator";
-import { ThemeToggle } from "./themes/ThemeToggle";
+import { Separator } from "../ui/Separator";
+import { ThemeToggle } from "@/themes/ThemeToggle";
 import { AccountMenu } from "./AccountMenu";
 
 export function Header() {

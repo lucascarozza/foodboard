@@ -4,7 +4,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import { Button } from "./ui/Button";
+import { Button } from "../../../../components/ui/Button";
 
 interface PaginationProps {
   pageIndex: number;

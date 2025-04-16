@@ -1,9 +1,9 @@
-import { CanceledOrdersCard } from "./Cards/CanceledOrdersCard";
-import { DailyOrdersCard } from "./Cards/DailyOrdersCard";
-import { EarningsCard } from "./Cards/EarningsCard";
-import { OrdersStatsCard } from "./Cards/OrdersStatsCard";
-import { PopularChart } from "./Charts/PopularChart";
-import { RevenueChart } from "./Charts/RevenueChart";
+import { CanceledOrdersCard } from "./components/Cards/CanceledOrdersCard";
+import { DailyOrdersCard } from "./components/Cards/DailyOrdersCard";
+import { EarningsCard } from "./components/Cards/EarningsCard";
+import { OrdersStatsCard } from "./components/Cards/OrdersStatsCard";
+import { PopularChart } from "./components/Charts/PopularChart";
+import { RevenueChart } from "./components/Charts/RevenueChart";
 
 export function Dashboard() {
   // throw new Error("Erro teste");

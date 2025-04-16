@@ -7,7 +7,7 @@ import { ptBR } from "date-fns/locale";
 import { getOrderDetails } from "@/api/get-order-details";
 
 // Internal components
-import { OrderStatus } from "@/components/OrderStatus";
+import { OrderStatus } from "@/pages/app/Orders/components/Table/OrderStatus";
 import {
   DialogContent,
   DialogHeader,
