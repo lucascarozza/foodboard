@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 // Internal utilities
 import {
-  GetManagedRestaurant,
+  GetManagedRestaurantResponse,
   getManagedRestaurant,
 } from "@/api/get-managed-restaurant";
 
@@ -67,12 +67,12 @@ export function RestaurantProfileDialog() {
     name,
     description,
   }: RestaurantProfileSchema) {
-    const cached = queryClient.getQueryData<GetManagedRestaurant>([
+    const cached = queryClient.getQueryData<GetManagedRestaurantResponse>([
       "managed-restaurant",
     ]);
 
     if (cached) {
-      queryClient.setQueryData<GetManagedRestaurant>(["managed-restaurant"], {
+      queryClient.setQueryData<GetManagedRestaurantResponse>(["managed-restaurant"], {
         ...cached,
         name,
         description,

@@ -8,7 +8,6 @@ export interface GetOrderDetailsResponse {
   id: string;
   createdAt: string;
   status: "pending" | "canceled" | "processing" | "delivering" | "delivered";
-  customerName: string;
   totalInCents: number;
   customer: {
     name: string;
@@ -16,7 +15,7 @@ export interface GetOrderDetailsResponse {
     phone: string | null;
   };
   orderItems: {
-    id: true;
+    id: string;
     priceInCents: number;
     quantity: number;
     product: {
