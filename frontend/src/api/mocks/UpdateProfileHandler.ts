@@ -6,7 +6,7 @@ export const updateProfileHandler = http.put<never, UpdateProfileBody>(
   async ({ request }) => {
     const { name } = await request.json();
 
-    if (name === "Restaurante Teste") {
+    if (name === "Restaurante Teste 2") {
       return new HttpResponse(null, { status: 204 });
     }
 

@@ -13,7 +13,7 @@ const orderStatusMap: Record<OrderStatus, string> = {
   pending: "Pendente",
   canceled: "Cancelado",
   processing: "Em preparação",
-  delivering: "Entregando",
+  delivering: "Em entrega",
   delivered: "Entregue",
 };
 
@@ -30,7 +30,7 @@ export function OrderStatus({ status }: OrderStatusProps) {
         <span className="h-2 w-2 rounded-full bg-blue-500" />
       )}
       {status === "delivering" && (
-        <span className="h-2 w-2 rounded-full bg-amber-600" />
+        <span className="h-2 w-2 rounded-full bg-orange-500" />
       )}
       {status === "delivered" && (
         <span className="h-2 w-2 rounded-full bg-emerald-500" />

@@ -109,7 +109,7 @@ export function SignUp() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Nome do responsável</Label>
+            <Label htmlFor="managerName">Nome do responsável</Label>
             <Input
               id="managerName"
               type="text"
@@ -129,7 +129,7 @@ export function SignUp() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Telefone</Label>
+            <Label htmlFor="phone">Telefone</Label>
             <Input
               id="phone"
               type="tel"
